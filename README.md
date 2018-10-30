@@ -7,6 +7,7 @@ If you have python 3.6 or greater, just install the dependencis, otherwise follo
 
 
 ```
+pip install --upgrade pip
 pip install -r requirements.txt
 ```
 
