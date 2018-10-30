@@ -23,14 +23,13 @@ charity_address: public(address)
 @public
 def __init__(_charity_address: address):
     # Assign charity to pay out to.
-    # Apply sales_ends value.
+    # Set sale_ends to SALE_ROUND_LENGTH block away.
     pass
-
 
 @payable
 @public
 def buy(participant: address, ticket_number: uint256):
-    # assign participant address to ticket number
+    # Assign participant address to ticket number
     # Increment participant_count
     pass
 
@@ -39,6 +38,8 @@ def buy(participant: address, ticket_number: uint256):
 @constant
 def generate_rand() -> uint256:
     # DO NOT EVER DEPLOY THIS TO MAINNET.
+    # Hash the the previous block number,
+    # Convert to uint256 and modulo by the participant_count
     return 1
 
 

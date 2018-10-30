@@ -17,6 +17,12 @@ Test it
 ```
 pytest
 ```
+For all tests.
+
+```
+pytest -k test_init
+```
+For a specific test
 
 Deploy it !?
 ============

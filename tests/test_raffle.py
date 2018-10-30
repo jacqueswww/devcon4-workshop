@@ -15,6 +15,11 @@ def contract(get_contract, w3):
     return c
 
 
+def test_init(contract, w3):
+    assert contract.sale_ends() == 6
+    assert contract.charity_address() == w3.eth.accounts[0]
+
+
 def test_buy_zero_address(contract, assert_tx_failed):
     assert_tx_failed(lambda: contract.buy('0x0000000000000000000000000000000000000000', 0))
 
