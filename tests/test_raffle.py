@@ -68,9 +68,19 @@ def buy_tickets(w3, contract):
     return contract
 
 
-def test_buy_particiapants(w3, buy_tickets):
+def test_buy_particiapants(w3, buy_tickets, get_logs):
     c = buy_tickets
     assert w3.eth.getBalance(c.address) == w3.toWei(4 * 0.05, 'ether')
+
+
+def test_ticket_buy_log(w3, contract, get_logs):
+    a2 = w3.eth.accounts[1]
+    tx_hash = contract.buy(a2, 123, transact={'value': ticket_price})
+    logs = get_logs(tx_hash, contract, 'TicketBought')
+
+    assert len(logs) > 0
+    assert logs[0]['args']['ticket_number'] == 123
+    assert logs[0]['args']['participant'] == '0x2B5AD5c4795c026514f8317c7a215E218DcCD6cF'
 
 
 def test_sale_round_end(w3, tester, buy_tickets, assert_tx_failed):
@@ -84,6 +94,16 @@ def test_sale_round_end(w3, tester, buy_tickets, assert_tx_failed):
 
     c.roll_dice(transact={})
     assert c.rolled() == True
+
+
+def test_winner(w3, tester, buy_tickets, get_logs):
+    contract = buy_tickets
+    tester.mine_blocks(num_blocks=4)
+
+    tx_hash = contract.roll_dice(transact={})
+    logs = get_logs(tx_hash, contract, 'WinnerPicked')
+
+    assert len(logs) > 0
 
 
 def test_payout(w3, tester, buy_tickets):

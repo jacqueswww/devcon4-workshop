@@ -1,5 +1,9 @@
 # Simple raffle example, don't use random generation on chain!
 
+# Log statements
+TicketBought: event({ticket_number: uint256, participant: address})
+WinnerPicked: event({ticket_number: uint256})
+
 # Constants
 BLOCKS_PER_ROUND: constant(uint256) = 10
 MAX_PARTICIPANTS: constant(uint256) = 200000
@@ -29,7 +33,7 @@ def __init__(_charity_address: address):
 @payable
 @public
 def buy(participant: address, ticket_number: uint256):
-    # Assign participant address to ticket number
+    # Assign prarticipant address to ticket number
     # Increment participant_count
     pass
 
@@ -55,7 +59,6 @@ def roll_dice():
 # if you have the winning ticket cash out.
 @public
 def payout():
-    #
     # send 10% to winner
-    # destroy contract and payout 90% (or the balance) to charity.
+    # destroy contract and payout 90% (or the balance) to charity address.
     pass
