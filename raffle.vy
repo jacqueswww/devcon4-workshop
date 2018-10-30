@@ -39,7 +39,7 @@ def buy(participant: address, ticket_number: uint256):
 @constant
 def generate_rand() -> uint256:
     # DO NOT EVER DEPLOY THIS TO MAINNET.
-    pass
+    return 1
 
 
 # Roll the dice, and store the winning number.
