@@ -3,7 +3,7 @@ Vyper Raffle Example
 See raffle.vy and fill in.
 
 
-If you have python 3.6 or greater, just install the dependencis, otherwise follow <> to get python3.6 setup.
+If you have python 3.6 or greater, just install the dependencis, otherwise follow https://vyper.readthedocs.io/en/latest/installing-vyper.html#prerequisites to get python3.6 setup.
 
 
 ```
