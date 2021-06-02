@@ -24,16 +24,11 @@ def test_buy_zero_address(contract, assert_tx_failed):
     assert_tx_failed(lambda: contract.buy('0x0000000000000000000000000000000000000000', 0))
 
 
-def test_buy_zero_address(contract, assert_tx_failed):
-    assert_tx_failed(lambda: contract.buy('0x0000000000000000000000000000000000000000', 0))
-
-
-
 def test_ticket_price(w3, contract, assert_tx_failed):
     a3, a4 = w3.eth.accounts[2:4]
     contract.buy(a4, 44, transact={'value': ticket_price})
-    assert_tx_failed(lambda:  contract.buy(a4, 45, transact={'value': ticket_price - 1}))
-    assert_tx_failed(lambda:  contract.buy(a4, 45, transact={'value': ticket_price + 1}))
+    assert_tx_failed(lambda: contract.buy(a4, 45, transact={'value': ticket_price - 1}))
+    assert_tx_failed(lambda: contract.buy(a4, 45, transact={'value': ticket_price + 1}))
 
 
 def test_max_participants(w3, contract, assert_tx_failed):
@@ -93,7 +88,7 @@ def test_sale_round_end(w3, tester, buy_tickets, assert_tx_failed):
     )
 
     c.roll_dice(transact={})
-    assert c.rolled() == True
+    assert c.rolled() is True
 
 
 def test_winner(w3, tester, buy_tickets, get_logs):
@@ -107,7 +102,6 @@ def test_winner(w3, tester, buy_tickets, get_logs):
 
 
 def test_payout(w3, tester, buy_tickets):
-
     c = buy_tickets
 
     full_pot = w3.eth.getBalance(c.address)
